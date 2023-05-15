@@ -4,7 +4,7 @@ var megaMenu = (function(){
     let ovlerayTimeOut = null;
 
     // On hover for main menu btns
-    $(".menu-btn").mouseenter(function(){
+    $(".overlay-on-over").mouseenter(function(){
         ovlerayTimeOut = setTimeout(function(){
             $(".overlay").fadeIn();
         }, 250);
@@ -45,10 +45,16 @@ var megaMenu = (function(){
         $(".photoBackDrop").css('background-position', '0 -820px')
     })
 
-
     function resetSubcat(){
         $('.sub-column-1, .sub-column-2, .sub-column-3, .sub-column-4').hide();
         $('.cat-1-btn, .cat-2-btn, .cat-3-btn, .cat-4-btn').removeClass("sub-menu-nav-btn-active");
     }
+
+    ////// Mobile /////////
+    $('.mobile-menu-container').click(function(){
+        $(this).toggleClass("formX");
+        $(".overlay, .menu-btn").toggle();
+    }); 
+
 
 })();
