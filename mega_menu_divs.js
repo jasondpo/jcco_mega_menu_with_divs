@@ -85,14 +85,20 @@ var megaMenu = (function(){
         $(".mega-menu-container").toggleClass("revealMenu").toggleClass("showMenuBtns"); 
     }); 
 
-    // Click outside of menu
+    // Click outside of mega menu container - WGAC
     $(document).mouseup(function(e){
         var container = $(".mega-menu-container");
         if(!container.is(e.target) && container.has(e.target).length === 0 && $(window).width() < 831){
             container.removeClass("revealMenu").removeClass("showMenuBtns");
             $(".overlay, .menu-btn").hide();
-            $('.mobile-menu-container').removeClass("formX");
+            $('.mobile-menu-container').removeClass("formX"); 
+        }else{ // > 831
+            $(".overlay").fadeOut("fast");  
+            clearTimeout(ovlerayTimeOut);
+            $(".overlay-on-over").removeClass("tabHoverState-mv tabHoverState");
         }
     });
+
+
 
 })();
