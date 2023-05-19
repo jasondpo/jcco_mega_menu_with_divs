@@ -6,6 +6,7 @@ var megaMenu = (function(){
 
     // On hover for main menu btns
     $(".overlay-on-over").mouseenter(()=>{
+        $(".overlay-on-over").blur().removeClass("tabHoverState-mv tabHoverState");
         clearTimeout(ovlerayDelayedTimeOut);
         ovlerayTimeOut = setTimeout(()=>{
             $(".overlay").fadeIn();

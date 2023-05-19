@@ -16,18 +16,6 @@ html,body{
 
 /////////////////////////////////////////////
 //  MEGA MENU
-.mv-color{
-    background-color: rgba(192, 179, 118, 0);// --mv-color:#C0B376
-}
-.license-color{
-    background-color: rgba(41, 145, 13, 0);// --license-color:#29910d
-}
-.voter-color{
-    background-color: rgba(191, 14, 63, 0);// --voter-color:#BF0E3F
-}
-.chat-color{
-    background-color: rgba(187, 187, 187, 0);// --chat-color:#BBBBBB
-}
 
 .wrapper{
     position:absolute;
@@ -189,6 +177,11 @@ html,body{
                                     text-indent: 14px;
                                     font-size: 14px;
                                     letter-spacing: .02em;
+
+                                    a{
+                                        color: #222;
+                                        text-decoration: none;
+                                    }
                                 }
                                 p:after{
                                     content:"";
@@ -210,8 +203,8 @@ html,body{
                             .sub-menu-nav-btn-active{
                             background-color: #C0B376;
                             box-shadow: none; 
-                                p{
-                                        color: white;
+                                p a{
+                                    color: white;
                                 }
                                 p:after{
                                     right:12px;
@@ -451,7 +444,7 @@ html,body{
 
     & > p{
         color: white;
-        background-color: var(--license-color) !important;
+        background-color: var(--btn-color);
     }
     & > p:after{
         transform: rotate(-180deg) !important;
@@ -470,9 +463,9 @@ html,body{
 .tabHoverState-mv{
     background-color: white;
     
-    & > p.mv-color{
+    & > p{
         color: white;
-        background-color: var(--mv-color);
+        background-color: var(--btn-color);
     }
 
     & > p:after{
@@ -492,13 +485,18 @@ html,body{
             opacity: 1 !important;
             transform: translateY(0) !important;
             transition: opacity .25s linear .25s, transform .25s linear .25s !important; 
+            
         }
     }
 
-
 }// /tabHoverState-mv
 
-
+.sub-menu-nav-btn-wcag-active{
+    background-color: var(--mv-color) !important;
+    p a{
+        color:white !important;
+    }
+}
 
 /////////////////////////// /WCAG Accessibility ///////////////////////////
 
