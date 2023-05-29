@@ -3,82 +3,44 @@ var megaMenuWCAG = (function(){
 
     let tabbingTiming = null;
 
-    $('.overlay-on-over').on("focus", function(){ 
-        clearTimeout(tabbingTiming);
-        resetTab();
-        if($(this).hasClass("wcagTab-mv")){
+    $('.overlay-on-over').on("focus", function(){
+        if($(window).width() > 831){
+            clearTimeout(tabbingTiming);
+            resetTab();
+        
             tabbingTiming = setTimeout(()=>{
-                $(this).addClass("tabHoverState-mv");
+                $(this).addClass("wcag-tab");
                 setTimeout(()=>{
                     $(".overlay").fadeIn();
                 }, 250);
-            }, 1000); // 1 second delay when tabbing to menu btn
-        }else{
-            tabbingTiming = setTimeout(()=>{
-                $(this).addClass("tabHoverState");
-                setTimeout(()=>{
-                    $(".overlay").fadeIn();
-                }, 250);
-            }, 1000); // 1 second delay when tabbing to menu btn
-        }
-        // tabThruDropDown();
+            }, 1000); // 1 second delay when tabbing to menu btn AND effects touch events
+            
+            if(!$(this).hasClass("current-menu-item")){
+                $(".current-menu-item > p").addClass("menuItemGhosted");
+            }else{
+                $(this).addClass("currentTabReset"); // Create a class that resests current-menu-item
+            }
+        } 
+       
     });
-
 
 
     // sub-menu-nav-btns
     $('a').on("focus", function(){
-        resetSubcat();
+        // resetSubcat();
         if($(this).closest(".sub-menu-nav-btn").length > 0){
             $(".sub-menu-nav-btn").removeClass("sub-menu-nav-btn-wcag-active");
             $(this).closest(".sub-menu-nav-btn").addClass("sub-menu-nav-btn-wcag-active");
-            openSubCol(this);
+            // openSubCol(this);
         };
     });
 
-    function openSubCol(thisBtn){
-        resetSubcat();
-        if($(thisBtn).parents(".cat-1-btn").length != 0){
-            $('.sub-column-1').show();
-            $('.sub-column-1 .sub-menu-btn a').each(function (i){ 
-                $(this).attr('tabindex', i + 1); 
-            })
-            $(".photoBackDrop").css('background-position', '0 -205px');
-        }
-        if($(thisBtn).parents(".cat-2-btn").length != 0){
-            $('.sub-column-2').show();
-            $(".photoBackDrop").css('background-position', '0 -410px');
-        }
-        if($(thisBtn).parents(".cat-3-btn").length != 0){
-            $('.sub-column-3').show();
-            $(".photoBackDrop").css('background-position', '0 -615px');
-        }
-        if($(thisBtn).parents(".cat-4-btn").length != 0){
-            $('.sub-column-4').show();
-            $(".photoBackDrop").css('background-position', '0 -820px');
-        }
-    }
-
-
- 
-
-
-    function resetSubcat(){
-        $('.sub-column-1, .sub-column-2, .sub-column-3, .sub-column-4').hide();
-        $('.cat-1-btn, .cat-2-btn, .cat-3-btn, .cat-4-btn').removeClass("sub-menu-nav-btn-active");
-    }
-
     function resetTab(){
         $(".overlay").fadeOut("fast");  
-        $(".overlay-on-over").removeClass("tabHoverState-mv tabHoverState");
+        $(".overlay-on-over").removeClass("wcag-tab");
+        $(".current-menu-item > p").removeClass("menuItemGhosted");
+        $(this).removeClass("wcag-tabForceOriginal");
     }
-
-
-    // $(".menu-btn").on('keypress',function(e) {
-    //     if(e.which == 13) {
-    //         $(this).mouseenter();
-    //     }
-    // });
 
     ////////////////// Sroll Events //////////////////
 
@@ -91,7 +53,6 @@ var megaMenuWCAG = (function(){
     });
 
     // Throttle function
-
 
 
      ////////////////// Sroll Events //////////////////
